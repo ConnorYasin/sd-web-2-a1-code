@@ -23,7 +23,7 @@ function displayNames(item, elementId) {
   console.log(item.name);
   const namesList = document.getElementById(elementId);
   const nameListItem = document.createElement("li");
-  nameListItem.textContent = array.name;
+  nameListItem.textContent = item.name;
   namesList.appendChild(nameListItem);
 }
 // 2. Print out the names of characters whose age is less than 40 in the console, then render them in the HTML list with id "young-characters-list"
