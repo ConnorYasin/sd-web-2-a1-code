@@ -20,6 +20,7 @@ const users = [
 users.forEach(user => DisplayNames(user, "names-list"));
 
 function DisplayNames(user, elementId) {
+  console.log(user.name);
   const namesList = document.getElementById(elementId);
   const nameListItem = document.createElement("li");
   nameListItem.textContent = user.name;
