@@ -20,11 +20,21 @@ const users = [
 users.forEach(user => displayNames(user, "names-list"));
 
 function displayNames(item, elementId) {
-  console.log(item.name);
-  const namesList = document.getElementById(elementId);
-  const nameListItem = document.createElement("li");
-  nameListItem.textContent = item.name;
-  namesList.appendChild(nameListItem);
+  if (!item.name) {
+    console.error(`Error: Object with id ${item.id} is missing the "name" property.`);
+    const errorMessagesDiv = document.getElementById("broken-array-errors");
+    const errorMessage = document.createElement("p");
+    errorMessage.textContent = `Error: Object with id ${item.id} is missing the "name" property.`;
+    errorMessagesDiv.appendChild(errorMessage);
+    return;
+  }
+  else {
+    console.log(item.name);
+    const namesList = document.getElementById(elementId);
+    const nameListItem = document.createElement("li");
+    nameListItem.textContent = item.name;
+    namesList.appendChild(nameListItem);
+  }
 }
 // 2. Print out the names of characters whose age is less than 40 in the console, then render them in the HTML list with id "young-characters-list"
 users.forEach(user => {
@@ -49,7 +59,7 @@ users.map(user => filterByAgeLessThanAndDisplayNames(user, 100, "age-filter-list
 //used map to experiment with another way of calling the function
 
 // 5. Add error handling to your functions that will log an error message using console.error() if any object doesn't have a "name" property. Display any error messages in the div with id "error-messages"
-displayArrayNames(brokenUsers, "broken-array-list");
+
 // 6. Test your error handling by creating a second array that's intentionally broken (missing name properties) and passing it to your functions. Verify that your error handling works correctly and displays errors in the div with id "broken-array-errors"
 const brokenUsers = [
   { id: 1, name: "Luke Skywalker", age: 23 },
@@ -63,3 +73,5 @@ const brokenUsers = [
   { id: 9, age: 112 },
   { id: 10, name: "Padmé Amidala", age: 27 },
 ];
+
+displayArrayNames(brokenUsers, "broken-array-list");
