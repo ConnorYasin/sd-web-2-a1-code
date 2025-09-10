@@ -51,13 +51,13 @@ displayArrayNames(users, "function-list");
 
 // 4. Create a function that takes an array and an age threshold parameter. The function should only display characters whose age is below the given number. Render results in the list with id "age-filter-list"
 function filterByAgeLessThanAndDisplayNames(array, ageThreshold, elementId){
-  if (array.age < ageThreshold) {
-    displayNames(array, elementId);
-  }
+  array.map(item => {if (item.age < ageThreshold) {
+    displayNames(item, elementId);
+  }});
+  //used map to experiment with another way of calling the function
 }
-users.map(user => filterByAgeLessThanAndDisplayNames(user, 100, "age-filter-list"));
-//used map to experiment with another way of calling the function
 
+filterByAgeLessThanAndDisplayNames(users, 100, "age-filter-list");
 // 5. Add error handling to your functions that will log an error message using console.error() if any object doesn't have a "name" property. Display any error messages in the div with id "error-messages"
 
 // 6. Test your error handling by creating a second array that's intentionally broken (missing name properties) and passing it to your functions. Verify that your error handling works correctly and displays errors in the div with id "broken-array-errors"
